@@ -1,4 +1,8 @@
-# include<iostream>
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
 # include<conio.h> 
 
 using namespace std;
@@ -16,7 +20,18 @@ int main()
         cin>>str;
         for(int i=0;i<str.length();i++)
         {
+
             if(isdigit(str[i])){
+             if (INT_MAX < (num*10)+atoi(str[i]) ){
+                 if ( flag==1)
+                 cout<<INT_MAX<<endl;
+                 else
+                 {
+                     cout<<INT_MIN<<endl;
+                 }
+                 flag=2;
+                 break;
+             }
              num = num*10 + atoi(str[i]);
             }
             else if(str[i]=='-' || str[i] == '+'){
@@ -24,7 +39,8 @@ int main()
                     flag = -1;
             }
         }
-        cout<<num * flag <<endl;
+        if (flag!=2)
+            cout<<num * flag <<endl;
     }
     return 0;
 }
